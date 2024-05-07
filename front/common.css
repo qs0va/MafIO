@@ -19,7 +19,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    border-bottom: solid white;
+    border-bottom: solid white 1px;
 }
 
 
@@ -56,7 +56,7 @@ main {
 }
 
 footer {
-    border-top: solid white;
+    border-top: solid white 1px;
     width: 100%;
     height: var(--footer-height);
     background-color: var(--primary-color);
