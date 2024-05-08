@@ -1,13 +1,10 @@
-package ru.iospb.mafia.main;
+package ru.iospb.mafia;
 
-import jakarta.transaction.TransactionManager;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import ru.iospb.mafia.model.Game;
 import ru.iospb.mafia.model.Player;
 import ru.iospb.mafia.model.PlayerGame;
@@ -17,8 +14,6 @@ import ru.iospb.mafia.repos.PlayerRepository;
 
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "ru.iospb.mafia")
-@EntityScan("ru.iospb.mafia")
 public class MafiaApplication {
 
 	public static void main(String[] args) {
@@ -30,7 +25,7 @@ public class MafiaApplication {
 //		//return new JpaTransactionManager();
 //	}
 
-	@Bean
+
 	CommandLineRunner runner(GameRepository gameRepository, PlayerRepository playerRepository, PlayerGameRepository playerGameRepository) {
 		return args -> {
 			System.out.println("Hello from command line runner");
