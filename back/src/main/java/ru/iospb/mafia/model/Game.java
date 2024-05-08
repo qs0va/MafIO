@@ -1,11 +1,9 @@
 package ru.iospb.mafia.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -13,6 +11,13 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String number;
+
+    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
+    Set<PlayerGame> playersGames = new HashSet<>();
+
+    public Set<PlayerGame> getPlayersGames() {
+        return playersGames;
+    }
 
     public Long getId() {
         return id;
