@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title, links, scripts)">
+    <title th:replace="${title}"></title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/common.css}">
+
+    <script th:src="@{/menu.js}"></script>
+    <script th:src="@{/utils.js}"></script>
+
+    <th:block th:replace="${links}"></th:block>
+    <th:block th:replace="${scripts}"></th:block>
+</head>
+
 <body>
+<header th:fragment="header">
+    <nav class="left">
+        <span class="real" onclick="onMenuItemClick('/main')"   >Главная     </span>
+    </nav>
+    <nav class="middle">
+        <span></span>
+        <span class="real" onclick="onMenuItemClick('/players')">Игроки      </span>
+        <span class="real" onclick="onMenuItemClick('/games')"  >Игры        </span>
+        <span class="real" onclick="onMenuItemClick('/rating')" >Рейтинг     </span>
+        <span class="real" onclick="onMenuItemClick('/newGame')">Создать игру</span>
+    </nav>
+    <nav class="right">
+        <span>Вход</span>
+        <span>Учетная запись</span>
+    </nav>
+</header>
+
 <footer th:fragment="footer">
     © 2023 Нюхаем попу
 </footer>

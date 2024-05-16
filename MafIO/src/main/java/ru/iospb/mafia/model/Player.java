@@ -1,5 +1,6 @@
 package ru.iospb.mafia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -12,7 +13,8 @@ public class Player {
     Long id;
     String nickname;
 
-    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     Set<PlayerGame> playersGames = new HashSet<>();
 
     public Set<PlayerGame> getPlayersGames() {

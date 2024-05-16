@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class FrontController {
     @GetMapping("/main")
     String mainPage() {
-        return "index.html";
+        return "index";
     }
 
     @GetMapping("/")
@@ -19,21 +19,26 @@ public class FrontController {
 
     @GetMapping("/players")
     String playersPage() {
-        return "players.html";
+        return "players";
+    }
+
+    @GetMapping("/players/{id}")
+    String onePlayerPage() {
+        return "aplayer";
     }
 
     @GetMapping("/games")
     String gamesPage() {
-        return "games.html";
+        return "games";
     }
 
     @GetMapping("/rating")
     String ratingPage() {
-        return "rating.html";
+        return "rating";
     }
 
     @GetMapping("/newGame")
     String newGamePage() {
-        return "rating.html";
+        return "newGame";
     }
 }

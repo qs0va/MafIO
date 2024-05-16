@@ -1,27 +1,23 @@
 package ru.iospb.mafia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 public class PlayerGame {
-    @EmbeddedId
-    PlayerGameKey id = new PlayerGameKey();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("playerId")
-    @JoinColumn(name = "player_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id", nullable = true)
     Player player;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("gameId")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     Game game;
 
     double rating;
-
-    public PlayerGameKey getId() {
-        return id;
-    }
 
     public Player getPlayer() {
         return player;
@@ -29,7 +25,6 @@ public class PlayerGame {
 
     public void setPlayer(Player player) {
         this.player = player;
-        this.id.playerId = player.id;
     }
 
     public Game getGame() {
@@ -38,7 +33,6 @@ public class PlayerGame {
 
     public void setGame(Game game) {
         this.game = game;
-        this.id.gameId = game.id;
     }
 
     public double getRating() {

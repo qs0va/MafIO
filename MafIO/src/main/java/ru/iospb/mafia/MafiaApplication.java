@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import ru.iospb.mafia.model.Game;
 import ru.iospb.mafia.model.Player;
@@ -20,13 +21,10 @@ public class MafiaApplication {
 		SpringApplication.run(MafiaApplication.class, args);
 	}
 
-//	@Bean
-//	public 	TransactionManager transactionManager() {
-//		//return new JpaTransactionManager();
-//	}
-
-
-	CommandLineRunner runner(GameRepository gameRepository, PlayerRepository playerRepository, PlayerGameRepository playerGameRepository) {
+	@Bean
+	CommandLineRunner runner(GameRepository gameRepository,
+							 PlayerRepository playerRepository,
+							 PlayerGameRepository playerGameRepository) {
 		return args -> {
 			System.out.println("Hello from command line runner");
 
@@ -57,8 +55,6 @@ public class MafiaApplication {
 			Game g2 = new Game();
 			g2.setNumber("2");
 
-
-
 			// Saving
 			playerRepository.save(bob1);
 			playerRepository.save(bob2);
@@ -82,13 +78,7 @@ public class MafiaApplication {
 			playerGameRepository.save(temp);
 
 			// Loading
-			System.out.println(playerRepository.findAll());
-			System.out.println(gameRepository.findAll());
 
-			System.out.println("g1 players");
-			gameRepository.findById(1L).get().getPlayersGames().forEach((playerGame) -> {
-				System.out.println(playerGame.getPlayer());
-			});
 		};
 	}
 }

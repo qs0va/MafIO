@@ -1,20 +1,17 @@
 document.addEventListener('DOMContentLoaded', onload, false);
 
 function onload() {
-    document.getElementById("mainList").innerHTML=makeList(JSON.parse(getFromServer()))
+    document.getElementById('listContainer').innerHTML = makeList(JSON.parse(getFrom('/data/players')));
 }
 
 function makeList(jsArray) {
-    let out = ""
+    out = '';
     for (let i = 0; i < jsArray.length; i++) {
-        out = out + "<li><a href=\"../players/" + jsArray[i].id + "\">" + jsArray[i].nickname + "</a></li>" + "\n"
+        out += makeListItem(i+1, 'icon', jsArray[i].nickname, '', '', jsArray[i].id);
     }
-    return out
+    return out;
 }
 
-function getFromServer() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../data/players', false);
-    xhr.send();
-    return xhr.responseText
+function onListItemClick(id) {
+    document.location.href = '/players/' + id;
 }

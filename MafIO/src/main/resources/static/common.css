@@ -20,8 +20,9 @@ header {
     display: flex;
     justify-content: space-between;
     border-bottom: solid white 1px;
-}
 
+    font-size: larger;
+}
 
 header nav.left {
     width: 270px;
@@ -41,6 +42,10 @@ header nav span {
     line-height: var(--header-height);
     width: 135px;
     text-align: center;
+}
+
+header nav span.real {
+    cursor: pointer;
 }
 
 .margin {
@@ -63,8 +68,10 @@ footer {
 }
 
 .content {
-    width: 1000px;
+    width: 50%;
     min-height: calc(100vh - var(--footer-height) - var(--header-height) - 5px);
 
     background-color: var(--primary-color);
+    padding-left: 5%;
+    padding-right: 5%;
 }
