@@ -112,7 +112,9 @@ public class MafiaApplication {
 				temp.setRating(0);
 				temp.setRole("");
 				temp.setSlot(i + 1);
-				playerGameRepository.save(temp);
+				if (i != 2 && i != 3) {
+					playerGameRepository.save(temp);
+				}
 			}
 
 

@@ -3,7 +3,9 @@ package ru.iospb.mafia.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,9 +17,9 @@ public class Player {
 
     @JsonIgnore
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    Set<PlayerGame> playersGames = new HashSet<>();
+    List<PlayerGame> playersGames = new ArrayList<>();
 
-    public Set<PlayerGame> getPlayersGames() {
+    public List<PlayerGame> getPlayersGames() {
         return playersGames;
     }
 

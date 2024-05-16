@@ -5,20 +5,12 @@ function onload() {
     arr = []
     for (i = 0; i < 10; i++) {
         bob = {}
-        if (game.playersGames[i].player) {
-            bob.nickname = game.playersGames[i].player.nickname
-        }
-        else {
-            bob.nickname = 'Гость'
-        }
+        bob.nickname = game.playersGames[i].player.nickname
         bob.slot = game.playersGames[i].slot;
         bob.role = game.playersGames[i].role;
         bob.rating = game.playersGames[i].rating;
         arr.push(bob)
     }
-    arr.sort((a, b) => {
-        return a.slot - b.slot;
-    })
     document.getElementById("aGame").innerHTML = makeAGame(game.number, arr, game.townWins)
 }
 
