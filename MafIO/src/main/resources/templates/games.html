@@ -3,10 +3,10 @@
 <head th:replace="frags :: head(title=~{::title}, links=~{::link}, scripts=~{::script})">
     <title>Игроки</title>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/list.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/list.css}">
 
-    <script type="text/javascript" th:src="@{/list.js}"></script>
-    <script type="text/javascript" th:src="@{/games.js}"></script>
+    <script type="text/javascript" th:src="@{js/utils/list.js}"></script>
+    <script type="text/javascript" th:src="@{js/pages/games.js}"></script>
 </head>
 <body>
     <header th:replace="~{frags :: header}">

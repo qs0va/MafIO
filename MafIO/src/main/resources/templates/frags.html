@@ -3,10 +3,10 @@
 <head th:fragment="head(title, links, scripts)">
     <title th:replace="${title}"></title>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
 
-    <script th:src="@{/menu.js}"></script>
-    <script th:src="@{/utils.js}"></script>
+    <script th:src="@{/js/utils/menu.js}"></script>
+    <script th:src="@{js/utils/http.js}"></script>
 
     <th:block th:replace="${links}"></th:block>
     <th:block th:replace="${scripts}"></th:block>
