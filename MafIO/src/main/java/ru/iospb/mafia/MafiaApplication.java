@@ -52,8 +52,11 @@ public class MafiaApplication {
 
 			Game g1 = new Game();
 			g1.setNumber("1");
+			g1.setTownWins(true);
+
 			Game g2 = new Game();
 			g2.setNumber("2");
+			g1.setTownWins(false);
 
 			// Saving
 			playerRepository.save(bob1);
@@ -71,11 +74,47 @@ public class MafiaApplication {
 			gameRepository.save(g2);
 
 			// Setting relations
-			PlayerGame temp = new PlayerGame();
-			temp.setGame(g1);
-			temp.setPlayer(bob1);
-			temp.setRating(1.5);
-			playerGameRepository.save(temp);
+			for (int i = 0; i < 10; i++) {
+				PlayerGame temp = new PlayerGame();
+				temp.setGame(g1);
+				switch (i + 1) {
+					case 1:
+						temp.setPlayer(bob1);
+						break;
+					case 2:
+						temp.setPlayer(bob2);
+						break;
+					case 3:
+						temp.setPlayer(bob3);
+						break;
+					case 4:
+						temp.setPlayer(bob4);
+						break;
+					case 5:
+						temp.setPlayer(null);
+						break;
+					case 6:
+						temp.setPlayer(bob6);
+						break;
+					case 7:
+						temp.setPlayer(bob7);
+						break;
+					case 8:
+						temp.setPlayer(null);
+						break;
+					case 9:
+						temp.setPlayer(bob9);
+						break;
+					case 10:
+						temp.setPlayer(bob10);
+						break;
+				}
+				temp.setRating(0);
+				temp.setRole("");
+				temp.setSlot(i + 1);
+				playerGameRepository.save(temp);
+			}
+
 
 			// Loading
 

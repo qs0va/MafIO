@@ -32,13 +32,8 @@ public class FrontController {
         return "games";
     }
 
-    @GetMapping("/rating")
-    String ratingPage() {
-        return "rating";
-    }
-
-    @GetMapping("/newGame")
-    String newGamePage() {
-        return "newGame";
+    @GetMapping("/games/{i}")
+    String oneGamePage() {
+        return "agame";
     }
 }

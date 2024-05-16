@@ -2,6 +2,7 @@ package ru.iospb.mafia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import ru.iospb.mafia.model.Game;
 import ru.iospb.mafia.services.GameService;
@@ -18,4 +19,8 @@ public class GameController {
         return gameService.getAllGames();
     }
 
+    @GetMapping("/data/games/{id}")
+    Game aGame(@PathVariable Long id) {
+        return gameService.getGameById(id);
+    }
 }

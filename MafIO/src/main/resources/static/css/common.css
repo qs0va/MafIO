@@ -68,10 +68,10 @@ footer {
 }
 
 .content {
-    width: 50%;
+    width: 30%;
     min-height: calc(100vh - var(--footer-height) - var(--header-height) - 5px);
 
     background-color: var(--primary-color);
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 7%;
+    padding-right: 7%;
 }

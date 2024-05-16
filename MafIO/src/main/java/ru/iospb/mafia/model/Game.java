@@ -13,13 +13,14 @@ public class Game {
     Long id;
     String number;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
     Set<PlayerGame> playersGames = new HashSet<>();
 
     public Set<PlayerGame> getPlayersGames() {
         return playersGames;
     }
+
+    boolean townWins;
 
     public Long getId() {
         return id;
@@ -31,6 +32,14 @@ public class Game {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public boolean isTownWins() {
+        return townWins;
+    }
+
+    public void setTownWins(boolean townWins) {
+        this.townWins = townWins;
     }
 
     @Override
