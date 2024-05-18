@@ -51,7 +51,6 @@ function makeAPlayer(slot) {
         '           ' +
         '       </div>' +
         '       <div class="idHidden" style="display: none">' +
-                    '0' +
         '       </div>' +
         '   </div>' +
         '   <div class="right">' +

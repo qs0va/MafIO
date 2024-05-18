@@ -16,5 +16,5 @@ function putTo(url, body) {
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', url, false);
     xhr.send(body);
-    return xhr.responseText;
+    return xhr.status;
 }
