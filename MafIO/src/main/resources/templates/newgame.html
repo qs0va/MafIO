@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="frags :: head(title=~{::title}, links=~{::link}, scripts=~{::script})">
+    <title>Игра</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/newgame.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/agame.css}">
+    <script type="text/javascript" th:src="@{/js/pages/newgame.js}"></script>
+    <script type="text/javascript" th:src="@{/js/utils/formHandler.js}"></script>
+</head>
+<body>
+<header th:replace="~{frags :: header}">
+
+</header>
+
+<main>
+    <div class="margin"></div>
+    <div class="content">
+        <div id="aGame">
+
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{frags :: footer}">
+
+</footer>
+</body>
+</html>

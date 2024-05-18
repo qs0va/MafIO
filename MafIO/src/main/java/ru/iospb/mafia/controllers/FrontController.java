@@ -36,4 +36,9 @@ public class FrontController {
     String oneGamePage() {
         return "agame";
     }
+
+    @GetMapping("/newGame")
+    String newGamePage() {
+        return "newgame";
+    }
 }

@@ -1,0 +1,83 @@
+#header {
+    font-size: 1.1em;
+    margin-bottom: -5px;
+}
+
+#header .slot {
+    padding-bottom: 2px;
+}
+
+#header .rating {
+    margin-right: 2px;
+}
+
+#header .nickname {
+    margin-left: 12px;
+}
+
+input {
+    display: block;
+    width: 80%;
+
+    font: inherit;
+    background-color: var(--primary-color);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+input:placeholder-shown {
+    border: solid white 1px;
+}
+
+.nickname input {
+    width: 70%;
+    border: solid white 1px;
+    padding-left: 5px;
+}   
+
+.role input {
+    text-align: center;
+    width: 0.95em;
+}
+
+.rating input {
+    text-align: center;
+}
+
+.idButton {
+    border-radius: 50%;
+
+    width: 25px;
+    height: 23px;
+
+    margin-right: 15px;
+
+    cursor: pointer;
+    border: solid white 1px;
+}
+
+.control {
+    width: 100%;
+    height: 45px;
+
+    display: flex;
+    justify-content: end;
+}
+
+.control input {
+    border: solid white 1px;
+    
+    width: 20%;
+    height: 25px;
+
+    margin-right: 5%;
+    margin-top: 7px;
+
+    cursor: pointer;
+}
+
+.control input:hover {
+    background-color: var(--secondary-color);
+}
