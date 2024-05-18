@@ -25,4 +25,13 @@ public class PlayerService {
     public void deletePlayerById(Long id) {
         playerRepository.deleteById(id);
     }
+    public Long getIdByNickname(String nickname) {
+        var opt = playerRepository.findByNickname(nickname);
+        if (opt.isPresent()) {
+            return opt.get().getId();
+        }
+        else {
+            return null;
+        }
+    }
 }

@@ -6,7 +6,7 @@ function onIdButtonClick(slot) {
 
     if (nicknameElement.disabled == false) {
         id = getIdFromServer(nicknameElement.value);
-        if (id != 0) {
+        if (id.length != 0) {
             nicknameElement.style.border = 'none';
             nicknameElement.disabled = true;
             buttonElement.style.backgroundColor = 'green';
@@ -37,11 +37,11 @@ function save() {
             out[i] = makePlayerGame(idslotElement.innerHTML, slot, roleElement.value,ratingElement.value)
         }
         else {
-            return
+
         }
     }
 
-    alert(JSON.stringify(out))
+    putTo('/data/games', JSON.stringify(out))
 }
 
 function makePlayerGame(playerId, slot, role, rating) {
@@ -55,10 +55,9 @@ function makePlayerGame(playerId, slot, role, rating) {
 }
 
 function getIdFromServer(nickname) {
-    return (nickname.length == 0) ? 0 : 1;
+    return getFrom('/data/players/id?nickname=' + nickname);
 }
 
 function checkForm(playerId, role, rating) {
-    alert(playerId == 0)
     return false
 }

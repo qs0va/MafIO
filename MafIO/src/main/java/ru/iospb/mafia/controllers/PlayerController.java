@@ -1,10 +1,7 @@
 package ru.iospb.mafia.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.iospb.mafia.model.Player;
 import ru.iospb.mafia.services.PlayerService;
 
@@ -29,5 +26,10 @@ public class PlayerController {
     @DeleteMapping("/data/players/{id}")
     void deletePlayer(@PathVariable Long id) {
         playerService.deletePlayerById(id);
+    }
+
+    @GetMapping("/data/players/id")
+    Long id(@RequestParam String nickname) {
+        return playerService.getIdByNickname(nickname);
     }
 }
