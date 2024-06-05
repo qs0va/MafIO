@@ -1,5 +1,7 @@
 package ru.iospb.mafia.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.iospb.mafia.model.Game;
@@ -13,6 +15,9 @@ public class GameController {
     @Autowired
     GameService gameService;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @GetMapping("/data/games")
     List<Game> allGames() {
         return gameService.getAllGames();
@@ -23,8 +28,12 @@ public class GameController {
         return gameService.getGameById(id);
     }
 
-    @PutMapping("/data/games")
-    void newGame(@RequestBody List<PlayerGame> body) {
-        gameService.addNewGame(body);
+    @PostMapping("/data/games")
+    void newGame(@RequestParam String participations, @RequestParam boolean townWins, @RequestParam String tag) throws JsonProcessingException {
+        List<PlayerGame> plist = objectMapper.readValue(participations, objectMapper.getTypeFactory().constructCollectionType(List.class, PlayerGame.class));
+        System.out.println(plist.getFirst().getClass());
+        System.out.println(plist);
+        System.out.println(townWins);
+        System.out.println(tag);
     }
 }

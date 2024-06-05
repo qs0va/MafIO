@@ -27,45 +27,47 @@ function onIdButtonClick(slot) {
     }
 }
 
-function save() {
-    let out = Array(10).fill({})
-
-    for (i = 0; i < 10; i++) {
-        slot = 1 + i
-        playerElement = document.getElementById('player' + slot)
-        idslotElement = playerElement.querySelector('.idHidden')
-        ratingElement = playerElement.querySelector('.rating').querySelector('input')
-        roleElement   = playerElement.querySelector('.role')  .querySelector('input')
-
-        if(checkForm(idslotElement, roleElement, ratingElement, slot)) {
-            out[i] = makePlayerGame(idslotElement.innerHTML, slot, roleElement.value,ratingElement.value)
-        }
-        else {
-            return
-        }
-    }
-
-    if (putTo('/data/games', JSON.stringify(out)) == 200) {
-        alert('Сохранено')
-    }
-    else {
-        alert('Ошибка сервера')
-    }
-}
-
-function makePlayerGame(playerId, slot, role, rating) {
-    let out = {}
-    out.player = {}
-    out.player.id = playerId
-    out.role = role
-    out.rating = rating
-    out.slot = slot
-    return out
-}
-
 function getIdFromServer(nickname) {
     return getFrom('/data/players/id?nickname=' + nickname);
 }
+
+function onSaveClick() {
+    checkForm()
+
+    postTo('/data/games', makeRequestBody(JSON.stringify(collectPlist()), 1, 'tag'));
+}
+
+function makeRequestBody(participations, townWins, tag) {
+    out = 'participations=' + participations +
+     '&' + 'townWins=' + townWins +
+     '&' + 'tag=' + tag;
+    return out;
+}
+
+function collectPlist() {
+    let out = [{}]
+    for (let i = 0; i < out.length; i++) {
+        out[i] = makeParticipation(1, 1, 1, 1)
+    }
+    return out
+}
+
+function makeParticipation(slot, playerId, role, rating) {
+    let out = {}
+    out.slot = slot
+    out.playerId = playerId
+    out.rating = rating
+    out.role = role
+    return out
+}
+
+function checkForm() {
+
+}
+
+
+
+
 
 function checkForm(idElement, roleElement, ratingElement, slot) {
     if (slot == 1) {
@@ -83,9 +85,11 @@ function checkForm(idElement, roleElement, ratingElement, slot) {
         count.m++;
     }
 
+    ratingElement.value = ratingElement.value.replaceAll(',', '.')
     if (idElement.innerHTML.replaceAll(' ', '').length == 0) {
         onIdButtonClick(slot)
     }
+
     if (idElement.innerHTML.replaceAll(' ', '').length == 0) {
         return false
     }

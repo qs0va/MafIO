@@ -12,9 +12,10 @@ function deleteFrom(url) {
     return xhr.responseText;
 }
 
-function putTo(url, body) {
+function postTo(url, body) {
     var xhr = new XMLHttpRequest();
-    xhr.open('PUT', url, false);
+    xhr.open('POST', url, false);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(body);
     return xhr.status;
 }
