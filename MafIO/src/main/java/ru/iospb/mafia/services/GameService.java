@@ -3,10 +3,10 @@ package ru.iospb.mafia.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iospb.mafia.model.Game;
+import ru.iospb.mafia.model.Participation;
 import ru.iospb.mafia.model.Player;
-import ru.iospb.mafia.model.PlayerGame;
 import ru.iospb.mafia.repos.GameRepository;
-import ru.iospb.mafia.repos.PlayerGameRepository;
+import ru.iospb.mafia.repos.ParticipationRepository;
 import ru.iospb.mafia.repos.PlayerRepository;
 
 import java.util.Collections;
@@ -20,7 +20,7 @@ public class GameService {
     @Autowired
     PlayerRepository playerRepository;
     @Autowired
-    PlayerGameRepository playerGameRepository;
+    ParticipationRepository playerGameRepository;
 
     public List<Game> getAllGames() {
         return gameRepository.findAll();
@@ -32,33 +32,33 @@ public class GameService {
         Player guest = new Player();
         guest.setNickname("Гость");
 
-        PlayerGame blank = new PlayerGame();
+        Participation blank = new Participation();
         blank.setRole("-");
         blank.setRating(0);
         blank.setSlot(0);
         blank.setPlayer(guest);
 
         int i = 0;
-        for (PlayerGame pg : out.getPlayersGames()) {
+        for (Participation pg : out.getParticipations()) {
             if (Objects.isNull(pg.getPlayer())) {
                 pg.setPlayer(guest);
             }
             i++;
         }
         for (;i < 10; i++) {
-            out.getPlayersGames().add(blank);
+            out.getParticipations().add(blank);
         }
 
-        Collections.sort(out.getPlayersGames());
+        Collections.sort(out.getParticipations());
 
         return out;
     }
 
-    public void addNewGame(List<PlayerGame> playerGameList) {
+    public void addNewGame(List<Participation> participationList) {
         Game game = new Game();
         game.setNumber("11");
         gameRepository.save(game);
-        for (var pg : playerGameList) {
+        for (var pg : participationList) {
             pg.setGame(game);
             var id = pg.getPlayer().getId();
             pg.setPlayer(playerRepository.findById(id).get());

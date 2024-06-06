@@ -3,7 +3,7 @@ package ru.iospb.mafia.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iospb.mafia.model.Player;
-import ru.iospb.mafia.repos.PlayerGameRepository;
+import ru.iospb.mafia.repos.ParticipationRepository;
 import ru.iospb.mafia.repos.PlayerRepository;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class PlayerService {
     PlayerRepository playerRepository;
 
     @Autowired
-    PlayerGameRepository playerGameRepository;
+    ParticipationRepository playerGameRepository;
 
     public List<Player> getAllPlayers() {
         return playerRepository.findAll();

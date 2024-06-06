@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-public class PlayerGame implements Comparable<PlayerGame> {
+public class Participation implements Comparable<Participation> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -69,7 +69,17 @@ public class PlayerGame implements Comparable<PlayerGame> {
     }
 
     @Override
-    public int compareTo(PlayerGame o) {
+    public String toString() {
+        return "Participation{" +
+                "id=" + id +
+                ", rating=" + rating +
+                ", role='" + role + '\'' +
+                ", slot=" + slot +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Participation o) {
         return this.slot - o.slot;
     }
 }

@@ -3,14 +3,12 @@ package ru.iospb.mafia;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import ru.iospb.mafia.model.Game;
+import ru.iospb.mafia.model.Participation;
 import ru.iospb.mafia.model.Player;
-import ru.iospb.mafia.model.PlayerGame;
 import ru.iospb.mafia.repos.GameRepository;
-import ru.iospb.mafia.repos.PlayerGameRepository;
+import ru.iospb.mafia.repos.ParticipationRepository;
 import ru.iospb.mafia.repos.PlayerRepository;
 
 
@@ -24,7 +22,7 @@ public class MafiaApplication {
 	@Bean
 	CommandLineRunner runner(GameRepository gameRepository,
 							 PlayerRepository playerRepository,
-							 PlayerGameRepository playerGameRepository) {
+							 ParticipationRepository participationRepository) {
 		return args -> {
 			System.out.println("Hello from command line runner");
 
@@ -75,7 +73,7 @@ public class MafiaApplication {
 
 			// Setting relations
 			for (int i = 0; i < 10; i++) {
-				PlayerGame temp = new PlayerGame();
+				Participation temp = new Participation();
 				temp.setGame(g1);
 				switch (i + 1) {
 					case 1:
@@ -113,7 +111,7 @@ public class MafiaApplication {
 				temp.setRole("");
 				temp.setSlot(i + 1);
 				if (i != 2 && i != 3) {
-					playerGameRepository.save(temp);
+					participationRepository.save(temp);
 				}
 			}
 

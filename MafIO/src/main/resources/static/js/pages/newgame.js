@@ -68,7 +68,7 @@ function makeAPlayer(slot) {
 function makeAGameFooter() {
     out = 
         '<div id="control">' +
-        '    <div class="control-el" class="whoWins">' +
+        '    <div class="control-el" id="whoWins">' +
         '        <span>Победа:</span>' +
         '        <select>' +
         '            <option>' +

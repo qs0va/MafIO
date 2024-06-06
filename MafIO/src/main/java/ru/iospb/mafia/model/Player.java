@@ -17,10 +17,10 @@ public class Player {
 
     @JsonIgnore
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    List<PlayerGame> playersGames = new ArrayList<>();
+    List<Participation> participations = new ArrayList<>();
 
-    public List<PlayerGame> getPlayersGames() {
-        return playersGames;
+    public List<Participation> getPlayersGames() {
+        return participations;
     }
 
     public String getNickname() {

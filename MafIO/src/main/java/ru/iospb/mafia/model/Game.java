@@ -16,10 +16,10 @@ public class Game {
     String number;
 
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-    List<PlayerGame> playersGames = new ArrayList<>();
+    List<Participation> participations = new ArrayList<>();
 
-    public List<PlayerGame> getPlayersGames() {
-        return playersGames;
+    public List<Participation> getParticipations() {
+        return participations;
     }
 
     boolean townWins;

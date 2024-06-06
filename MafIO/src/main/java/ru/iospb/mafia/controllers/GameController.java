@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.iospb.mafia.model.Game;
-import ru.iospb.mafia.model.PlayerGame;
+import ru.iospb.mafia.model.Participation;
 import ru.iospb.mafia.services.GameService;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class GameController {
 
     @PostMapping("/data/games")
     void newGame(@RequestParam String participations, @RequestParam boolean townWins, @RequestParam String tag) throws JsonProcessingException {
-        List<PlayerGame> plist = objectMapper.readValue(participations, objectMapper.getTypeFactory().constructCollectionType(List.class, PlayerGame.class));
+        List<Participation> plist = objectMapper.readValue(participations, objectMapper.getTypeFactory().constructCollectionType(List.class, Participation.class));
         System.out.println(plist.getFirst().getClass());
         System.out.println(plist);
         System.out.println(townWins);
