@@ -31,9 +31,7 @@ public class GameController {
     @PostMapping("/data/games")
     void newGame(@RequestParam String participations, @RequestParam boolean townWins, @RequestParam String tag) throws JsonProcessingException {
         List<Participation> plist = objectMapper.readValue(participations, objectMapper.getTypeFactory().constructCollectionType(List.class, Participation.class));
-        System.out.println(plist.getFirst().getClass());
         System.out.println(plist);
-        System.out.println(townWins);
-        System.out.println(tag);
+        gameService.addNewGame(plist, townWins, tag);
     }
 }

@@ -13,42 +13,39 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    String number;
-
+    boolean townWins;
+    String tag;
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
     List<Participation> participations = new ArrayList<>();
+
 
     public List<Participation> getParticipations() {
         return participations;
     }
-
-    boolean townWins;
-
     public Long getId() {
         return id;
     }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public boolean isTownWins() {
         return townWins;
     }
-
     public void setTownWins(boolean townWins) {
         this.townWins = townWins;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     @Override
     public String toString() {
         return "Game{" +
                 "id=" + id +
-                ", number='" + number + '\'' +
+                ", townWins=" + townWins +
+                ", tag='" + tag + '\'' +
                 '}';
     }
 }

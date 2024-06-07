@@ -2,16 +2,17 @@ document.addEventListener('DOMContentLoaded', onload, false);
 
 function onload() {
     game = JSON.parse(getFrom('/data/games/' + getIdFromUrl()))
+    alert(game.townWins)
     arr = []
     for (i = 0; i < 10; i++) {
         bob = {}
-        bob.nickname = game.playersGames[i].player.nickname
-        bob.slot = game.playersGames[i].slot;
-        bob.role = game.playersGames[i].role;
-        bob.rating = game.playersGames[i].rating;
+        bob.nickname = game.participations[i].player.nickname
+        bob.slot = game.participations[i].slot;
+        bob.role = game.participations[i].role;
+        bob.rating = game.participations[i].rating;
         arr.push(bob)
     }
-    document.getElementById("aGame").innerHTML = makeAGame(game.number, arr, game.townWins)
+    document.getElementById("aGame").innerHTML = makeAGame(game.id, arr, game.townWins)
 }
 
 function makeAGame(number, jsArray, townWins) {

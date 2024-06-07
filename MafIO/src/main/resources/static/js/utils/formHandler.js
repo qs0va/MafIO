@@ -1,33 +1,33 @@
-let count = {}
-
 function onIdButtonClick(slot) {
     nicknameElement = getElement(slot, '.nicknameInput')
     buttonElement = getElement(slot, '.idButton')
     idElement = getElement(slot, '.idHidden')
 
-    nicknameElement.value.replaceAll(' ', '');
     if (nicknameElement.disabled == false) {
-        id = getIdFromServer(nicknameElement.value);
-        if (id.length != 0 || nicknameElement.value.length == 0) {
+        if (nicknameElement.value.length != 0) {
+            let id = getIdFromServer(nicknameElement.value);
+            if (id.length != 0) {
+                nicknameElement.style.border = 'none';
+                nicknameElement.disabled = true;
+                buttonElement.style.backgroundColor = 'green';
+                idElement.innerHTML = id
+            }
+            else {
+                alert('Никнейм игрока №' + slot + ' не найден')
+            }
+        }
+        else {
             nicknameElement.style.border = 'none';
             nicknameElement.disabled = true;
             buttonElement.style.backgroundColor = 'green';
-        }
-        else {
-            alert('Никнейм игрока №' + slot + ' не найден')
-        }
-        if (nicknameElement.value.length == 0) {
             idElement.innerHTML = 0
-        }
-        else {
-            idElement.innerHTML = id
         }
     }
     else {
         nicknameElement.style.border = 'solid white 1px';
         nicknameElement.disabled = false;
         buttonElement.style.backgroundColor = 'var(--primary-color)';
-        idElement.innerHTML = ''
+        idElement.innerHTML = 0
     }
 }
 
@@ -36,7 +36,7 @@ function getIdFromServer(nickname) {
 }
 
 function onSaveClick() {
-    if (checkForm()) {
+    if (1) {
         alert('Сохранено')
         postTo('/data/games', makeRequestBody(
             JSON.stringify(collectPlist()),
@@ -69,7 +69,8 @@ function collectPlist() {
 function makeParticipation(slot, playerId, role, rating) {
     let out = {}
     out.slot = slot
-    out.playerId = playerId
+    out.player = {}
+    out.player.id = playerId
     out.rating = rating
     out.role = role
     return out

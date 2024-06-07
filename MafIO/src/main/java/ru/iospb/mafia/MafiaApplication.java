@@ -1,5 +1,6 @@
 package ru.iospb.mafia;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +23,8 @@ public class MafiaApplication {
 	@Bean
 	CommandLineRunner runner(GameRepository gameRepository,
 							 PlayerRepository playerRepository,
-							 ParticipationRepository participationRepository) {
+							 ParticipationRepository participationRepository,
+							 ObjectMapper objectMapper) {
 		return args -> {
 			System.out.println("Hello from command line runner");
 
@@ -49,11 +51,11 @@ public class MafiaApplication {
 			bob10.setNickname("bob10");
 
 			Game g1 = new Game();
-			g1.setNumber("1");
+			g1.setTag("1");
 			g1.setTownWins(true);
 
 			Game g2 = new Game();
-			g2.setNumber("2");
+			g2.setTag("2");
 			g1.setTownWins(false);
 
 			// Saving
@@ -117,7 +119,8 @@ public class MafiaApplication {
 
 
 			// Loading
-
+			var q = objectMapper.writeValueAsString(bob1);
+			System.out.println(q);
 		};
 	}
 }

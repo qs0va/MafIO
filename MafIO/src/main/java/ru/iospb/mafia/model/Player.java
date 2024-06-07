@@ -19,7 +19,7 @@ public class Player {
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     List<Participation> participations = new ArrayList<>();
 
-    public List<Participation> getPlayersGames() {
+    public List<Participation> getParticipations() {
         return participations;
     }
 

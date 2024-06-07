@@ -33,15 +33,14 @@ public class GameService {
         guest.setNickname("Гость");
 
         Participation blank = new Participation();
-        blank.setRole("-");
         blank.setRating(0);
         blank.setSlot(0);
         blank.setPlayer(guest);
 
         int i = 0;
-        for (Participation pg : out.getParticipations()) {
-            if (Objects.isNull(pg.getPlayer())) {
-                pg.setPlayer(guest);
+        for (Participation participation : out.getParticipations()) {
+            if (Objects.isNull(participation.getPlayer())) {
+                participation.setPlayer(guest);
             }
             i++;
         }
@@ -54,15 +53,21 @@ public class GameService {
         return out;
     }
 
-    public void addNewGame(List<Participation> participationList) {
+    public void addNewGame(List<Participation> participationList, boolean townWins, String tag) {
         Game game = new Game();
-        game.setNumber("11");
+        game.setTag(tag);
+        game.setTownWins(townWins);
         gameRepository.save(game);
-        for (var pg : participationList) {
-            pg.setGame(game);
-            var id = pg.getPlayer().getId();
-            pg.setPlayer(playerRepository.findById(id).get());
-            playerGameRepository.save(pg);
+        for (var participation : participationList) {
+            var id = participation.getPlayer().getId();
+            if (id != 0) {
+                participation.setPlayer(playerRepository.findById(id).get());
+            }
+            else {
+                participation.setPlayer(null);
+            }
+            participation.setGame(game);
+            playerGameRepository.save(participation);
         }
     }
 }

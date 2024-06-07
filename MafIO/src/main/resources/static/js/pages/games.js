@@ -7,7 +7,7 @@ function onload() {
 function makeList(jsArray) {
     out = '';
     for (let i = 0; i < jsArray.length; i++) {
-        out += makeListItem(i+1, 'icon', 'Игра #' + jsArray[i].number, '', 'Мышиная', jsArray[i].id);
+        out += makeListItem(i+1, 'icon', 'Игра #' + jsArray[i].id, '', jsArray[i].tag,  jsArray[i].id);
     }
     return out;
 }

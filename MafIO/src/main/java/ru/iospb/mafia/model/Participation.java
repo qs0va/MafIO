@@ -72,6 +72,7 @@ public class Participation implements Comparable<Participation> {
     public String toString() {
         return "Participation{" +
                 "id=" + id +
+                ", player=" + player +
                 ", rating=" + rating +
                 ", role='" + role + '\'' +
                 ", slot=" + slot +
