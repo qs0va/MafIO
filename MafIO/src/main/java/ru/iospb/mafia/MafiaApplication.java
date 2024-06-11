@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Bean;
 import ru.iospb.mafia.model.Game;
 import ru.iospb.mafia.model.Participation;
 import ru.iospb.mafia.model.Player;
+import ru.iospb.mafia.rating.Row;
 import ru.iospb.mafia.repos.GameRepository;
 import ru.iospb.mafia.repos.ParticipationRepository;
 import ru.iospb.mafia.repos.PlayerRepository;
+import ru.iospb.mafia.repos.RatingRepository;
 
 
 @SpringBootApplication
@@ -24,7 +26,7 @@ public class MafiaApplication {
 	CommandLineRunner runner(GameRepository gameRepository,
 							 PlayerRepository playerRepository,
 							 ParticipationRepository participationRepository,
-							 ObjectMapper objectMapper) {
+							 RatingRepository ratingRepository) {
 		return args -> {
 			System.out.println("Hello from command line runner");
 
@@ -116,11 +118,6 @@ public class MafiaApplication {
 					participationRepository.save(temp);
 				}
 			}
-
-
-			// Loading
-			var q = objectMapper.writeValueAsString(bob1);
-			System.out.println(q);
 		};
 	}
 }

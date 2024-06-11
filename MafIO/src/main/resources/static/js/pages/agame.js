@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', onload, false);
 
 function onload() {
     game = JSON.parse(getFrom('/data/games/' + getIdFromUrl()))
-    alert(game.townWins)
     arr = []
     for (i = 0; i < 10; i++) {
         bob = {}

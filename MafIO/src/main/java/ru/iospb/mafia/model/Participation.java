@@ -19,9 +19,7 @@ public class Participation implements Comparable<Participation> {
     Game game;
 
     double rating;
-
     String role;
-
     int slot;
 
     public Long getId() {

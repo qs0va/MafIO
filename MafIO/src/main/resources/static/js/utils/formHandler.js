@@ -36,7 +36,7 @@ function getIdFromServer(nickname) {
 }
 
 function onSaveClick() {
-    if (1) {
+    if (checkForm()) {
         alert('Сохранено')
         postTo('/data/games', makeRequestBody(
             JSON.stringify(collectPlist()),
@@ -57,7 +57,7 @@ function collectPlist() {
     let out = []
     for (let i = 0; i < 10; i++) {
         out.push(makeParticipation(
-            1 + i,
+            1 + i,В
             getElement(1 + i, '.idHidden').innerHTML,
             getElement(1 + i, '.roleInput').value,
             getElement(1 + i, '.ratingInput').value

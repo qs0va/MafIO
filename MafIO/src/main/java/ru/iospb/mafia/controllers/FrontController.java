@@ -41,4 +41,9 @@ public class FrontController {
     String newGamePage() {
         return "newgame";
     }
+
+    @GetMapping("/rating")
+    String ratingPage() {
+        return "rating";
+    }
 }
